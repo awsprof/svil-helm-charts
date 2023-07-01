@@ -3,6 +3,16 @@ entries:
   nginx-chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-07-01T21:08:02.336014763Z"
+    description: Testing NGINX Helm Charts
+    digest: 22b2c7b368fbcc1197dc3a6f1faad534220c1d8918c0b1430eb15779e42dbef2
+    name: nginx-chart
+    type: application
+    urls:
+    - https://github.com/awsprof/svil-helm-charts/releases/download/nginx-chart-0.1.1/nginx-chart-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-07-01T20:51:55.356040551Z"
     description: Testing NGINX Helm Charts
     digest: 4ce831561887f4ec8daceaed77fff4fccf3817f149afddaec28f7030a4840992
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/awsprof/svil-helm-charts/releases/download/nginx-chart-0.1.0/nginx-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2023-07-01T20:51:55.356387884Z"
+generated: "2023-07-01T21:08:02.336481388Z"
