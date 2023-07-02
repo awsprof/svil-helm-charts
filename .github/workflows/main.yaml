@@ -11,10 +11,4 @@ jobs:
     runs-on: [self-hosted, linux, ARM64, default]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.12.0-beta.3"
-          architecture: "arm64"
-          allow-prereleases: true
-          check-latest: true
       - uses: pre-commit/action@v3.0.0
