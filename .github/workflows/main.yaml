@@ -16,4 +16,5 @@ jobs:
           python-version: "3.12.0-beta.3"
           architecture: "arm64"
           allow-prereleases: true
+          check-latest: true
       - uses: pre-commit/action@v3.0.0
