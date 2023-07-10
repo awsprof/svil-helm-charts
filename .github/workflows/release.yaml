@@ -4,7 +4,8 @@ name: Release Charts
 on:
   workflow_dispatch:
   pull_request:
-
+    branches:
+      - "release*"
 permissions: {}
 jobs:
   release:
@@ -16,9 +17,11 @@ jobs:
     runs-on: [self-hosted, linux, X64, default]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: pre-commit
+        uses: pre-commit/action@v3.0.0
 
       - name: Configure Git
         run: |
