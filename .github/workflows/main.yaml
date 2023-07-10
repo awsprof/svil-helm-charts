@@ -8,7 +8,7 @@ on:
 
 jobs:
   pre-commit:
-    runs-on: [self-hosted, linux, ARM64, default]
+    runs-on: [self-hosted, linux, X64, default]
     steps:
       - uses: actions/checkout@v3
       - uses: pre-commit/action@v3.0.0
