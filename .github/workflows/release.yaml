@@ -1,19 +1,19 @@
+---
 name: Release Charts
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - release
+  pull_request:
 
 permissions: {}
 jobs:
   release:
     permissions:
-      contents: write # to push chart release and create a release (helm/chart-releaser-action)
+      # to push chart release and create a release (helm/chart-releaser-action)
+      contents: write
       packages: write # needed for ghcr access
 
-    runs-on: [self-hosted, linux, ARM64, default]
+    runs-on: [self-hosted, linux, X64, default]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -43,6 +43,7 @@ jobs:
         uses: helm/chart-releaser-action@v1.5.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_SKIP_EXISTING: true
 
       # - name: Push charts to GHCR
       #   run: |
