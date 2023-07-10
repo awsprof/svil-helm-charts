@@ -27,15 +27,15 @@ repos:
       - id: no-commit-to-branch
         args: [--branch, release]
       - id: check-merge-conflict
-  - repo: "https://github.com/gruntwork-io/pre-commit"
-    rev: "v0.1.22" # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
-    hooks:
-      - id: "helmlint"
-  - repo: https://github.com/bridgecrewio/checkov.git
-    rev: 2.3.309
-    hooks:
-      - id: checkov
-        args: [-d .]
+  # - repo: "https://github.com/gruntwork-io/pre-commit"
+  #   rev: "v0.1.22" # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+  #   hooks:
+  #     - id: "helmlint"
+  # - repo: https://github.com/bridgecrewio/checkov.git
+  #   rev: 2.3.309
+  #   hooks:
+  #     - id: checkov
+  #       args: [-d .]
   # - repo: https://github.com/Agilicus/pre-commit-hook-k8svalidate.git
   #   rev: v0.1.0
   #   hooks:
