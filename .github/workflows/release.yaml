@@ -39,9 +39,11 @@ jobs:
           helm repo add minio https://helm.min.io
 
       - name: Push helm charts
-        uses: J12934/helm-gh-pages-action@master
+        uses: stefanprodan/helm-gh-pages@master
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+          charts_url: https://raw.githubusercontent.com/awsprof/svil-helm-charts/gh-pages
+          owner: awsprof
+          token: ${{ secrets.GITHUB_TOKEN }}
       # - name: Run chart-releaser
       #   uses: helm/chart-releaser-action@v1.5.0
       #   env:
