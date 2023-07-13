@@ -18,8 +18,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Configure Git
         run: |
@@ -40,11 +38,17 @@ jobs:
           helm repo add hashicorp https://helm.releases.hashicorp.com
           helm repo add minio https://helm.min.io
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.5.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SKIP_EXISTING: true
+      - name: Push helm charts
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          charts_url: https://raw.githubusercontent.com/awsprof/svil-helm-charts/gh-pages
+          owner: awsprof
+          token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Run chart-releaser
+      #   uses: helm/chart-releaser-action@v1.5.0
+      #   env:
+      #     CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      #     CR_SKIP_EXISTING: true
 
       # - name: Push charts to GHCR
       #   run: |
