@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - "release*"
+      - "release"
+
 permissions: {}
 jobs:
   release:
@@ -39,14 +40,10 @@ jobs:
           helm repo add minio https://helm.min.io
 
       - name: Push helm charts
-        uses: J12934/helm-gh-pages-action@master
-        with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-branch: gh-pages
-      # - name: Run chart-releaser
-      #   uses: helm/chart-releaser-action@v1.5.0
-      #   env:
-      #     CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        # - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       #     CR_SKIP_EXISTING: true
 
       # - name: Push charts to GHCR
