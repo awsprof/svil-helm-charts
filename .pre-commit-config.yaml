@@ -10,24 +10,24 @@ repos:
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
-      # - id: check-yaml
       - id: check-json
+      - id: check-case-conflict
+      - id: check-symlinks
+      # - id: check-yaml
+      #   exclude: ^charts/templates/
+      # - id: detect-aws-credentials
+      - id: detect-private-key
       - id: fix-encoding-pragma
         args: ["--remove"]
       - id: forbid-new-submodules
       - id: mixed-line-ending
         args: ["--fix=lf"]
         description: Forces to replace line ending by the UNIX 'lf' character.
-      # - id: pretty-format-json
-      #  args: ['--no-sort-keys']
       - id: check-added-large-files
         args: ["--maxkb=500"]
       - id: no-commit-to-branch
         args: [--branch, release]
       - id: check-merge-conflict
-      - id: trailing-whitespace
-      - id: check-added-large-files
-      - id: end-of-file-fixer
   # - repo: "https://github.com/gruntwork-io/pre-commit"
   #   rev: "v0.1.22" # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
   #   hooks:
@@ -51,17 +51,14 @@ repos:
     hooks:
       - id: "helm-docs"
         args:
-          # Make the tool search for charts only under the `example-charts` directory
           - "--chart-search-root=charts"
-
-          # The `./` makes it relative to the chart-search-root set above
+          - "--template-files=./_templates.gotmpl"
           - "--template-files=README.md.gotmpl"
-
-  - repo: "https://github.com/norwoodj/helm-docs"
-    rev: "v1.11.0"
-    hooks:
-      - id: "helm-docs"
-        args:
-          - "--chart-to-generate=charts/nautobot"
-          - "--template-files=./docs/configuration/reference.md.gotmpl"
-          - "--output-file=../../docs/configuration/reference.md"
+  # - repo: "https://github.com/norwoodj/helm-docs"
+  #   rev: "v1.11.0"
+  #   hooks:
+  #     - id: "helm-docs"
+  #       args:
+  #         - "--chart-to-generate=charts/nautobot"
+  #         - "--template-files=./docs/configuration/reference.md.gotmpl"
+  #         - "--output-file=../../docs/configuration/reference.md"

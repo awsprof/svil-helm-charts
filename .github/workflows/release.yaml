@@ -3,22 +3,19 @@ name: Release Charts
 
 on:
   workflow_dispatch:
-  pull_request:
+  push:
+    branches:
+      - "release"
 
-permissions: {}
 jobs:
   release:
     permissions:
-      # to push chart release and create a release (helm/chart-releaser-action)
       contents: write
-      packages: write # needed for ghcr access
 
     runs-on: [self-hosted, linux, X64, default]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v3
 
       - name: Configure Git
         run: |
@@ -39,20 +36,15 @@ jobs:
           helm repo add hashicorp https://helm.releases.hashicorp.com
           helm repo add minio https://helm.min.io
 
-      - name: Run chart-releaser
+      # - name: Publish Helm Charts
+      #   uses: stefanprodan/helm-gh-pages@master
+      #   with:
+      #     charts_url: https://svil-helm-charts.srivittal.com/
+      #     token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Push helm charts
+        # - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SKIP_EXISTING: true
-
-      # - name: Push charts to GHCR
-      #   run: |
-      #     shopt -s nullglob
-      #     for pkg in .cr-release-packages/*; do
-      #       if [ -z "${pkg:-}" ]; then
-      #         break
-      #       fi
-      #       if ! helm push "${pkg}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"; then
-      #         echo '::warning:: helm push failed!'
-      #       fi
-      #     done
+      # #     CR_SKIP_EXISTING: true

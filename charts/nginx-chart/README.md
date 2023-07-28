@@ -1,8 +1,27 @@
+
 # nginx-chart
+
+Testing NGINX Helm Charts
 
 ![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
-Testing NGINX Helm Charts
+This is a good example of all the fields that don't appear when they aren't set in chart metadata. `description`,
+`requirements`, and `values` are all empty and don't appear here.
+
+There is a flower though:
+```
+          ,-.
+ ,     ,-.   ,-.
+/ \   (   )-(   )
+\ |  ,.>-(   )-<
+ \|,' (   )-(   )
+  Y ___`-'   `-'
+  |/__/   `-'
+  |
+  |
+  |    -hi-
+__|_____________
+```
 
 ## Values
 
