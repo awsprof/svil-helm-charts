@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - release
 jobs:
   pre-commit:
     runs-on: [self-hosted, linux, X64, default]
