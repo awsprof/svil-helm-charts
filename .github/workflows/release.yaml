@@ -3,11 +3,11 @@ name: Release Charts
 
 on:
   workflow_dispatch:
-  pull_request_review:
-    types: [submitted]
+  push:
+    branches:
+      - release
 
 jobs:
-  if: github.event.review.state == 'approved'
   release:
     permissions:
       contents: write
