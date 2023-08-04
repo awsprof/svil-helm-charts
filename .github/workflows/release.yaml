@@ -35,15 +35,15 @@ jobs:
           helm repo add hashicorp https://helm.releases.hashicorp.com
           helm repo add minio https://helm.min.io
 
-      # - name: Publish Helm Charts
-      #   uses: stefanprodan/helm-gh-pages@master
-      #   with:
-      #     charts_url: https://svil-helm-charts.srivittal.com/
-      #     token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Publish Helm Charts
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          charts_url: https://svil-helm-charts.srivittal.com/
+          token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Push helm charts
-        # - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.5.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SKIP_EXISTING: false
+      # - name: Push helm charts
+      #   # - name: Run chart-releaser
+      #   uses: helm/chart-releaser-action@v1.5.0
+      #   env:
+      #     CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      #     CR_SKIP_EXISTING: false
