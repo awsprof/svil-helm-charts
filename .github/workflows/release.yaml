@@ -3,15 +3,14 @@ name: Release Charts
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "release"
+  pull_request_review:
+    types: [submitted]
 
 jobs:
+  if: github.event.review.state == 'approved'
   release:
     permissions:
       contents: write
-
     runs-on: [self-hosted, linux, X64, default]
     steps:
       - name: Checkout
