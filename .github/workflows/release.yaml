@@ -3,9 +3,9 @@ name: Release Charts
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
-      - "release"
+      - release
 
 jobs:
   release:
