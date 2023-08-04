@@ -54,7 +54,7 @@ __|_____________
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
+| serviceAccount.create | bool | `false` |  |
 | serviceAccount.name | string | `""` |  |
 | tolerations | list | `[]` |  |
 
