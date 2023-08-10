@@ -1,0 +1,351 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": ["namespaces"],
+  "properties": {
+    "namespaces": {
+      "type": "array",
+      "default": [],
+      "title": "The namespace object array",
+      "items": {
+        "type": "object",
+        "title": "A single namespace",
+        "required": ["name", "is_sub_namespace", "annotations", "labels"],
+        "additionalProperties": false,
+        "dependencies": {
+          "is_sub_namespace": {
+            "if": { "properties": { "is_sub_namespace": { "const": true } } },
+            "then": { "required": ["parent"] }
+          }
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "The name of the namespace",
+            "examples": [
+              "parent",
+              "parent-2",
+              "child1",
+              "child2",
+              "tenant1",
+              "tenant2"
+            ]
+          },
+          "is_sub_namespace": {
+            "type": "boolean",
+            "title": "Is this a sub namespace",
+            "examples": [false, true]
+          },
+          "annotations": {
+            "type": "object",
+            "title": "The annotations for the namespace",
+            "examples": [
+              {
+                "prometheus.io/port": 8080,
+                "prometheus.io/scrape": true
+              },
+              {
+                "prometheus.io/port": 8080,
+                "prometheus.io/scrape": true
+              },
+              {
+                "prometheus.io/port": 8080,
+                "prometheus.io/scrape": true
+              },
+              {
+                "prometheus.io/port": 8080,
+                "prometheus.io/scrape": true
+              },
+              {
+                "prometheus.io/port": 8080,
+                "prometheus.io/scrape": true
+              },
+              {
+                "prometheus.io/port": 8080,
+                "prometheus.io/scrape": true
+              }
+            ]
+          },
+          "labels": {
+            "type": "object",
+            "title": "The labels for the namespace metadata",
+            "examples": [
+              {
+                "kustomize.toolkit.fluxcd.io/name": "namespaces",
+                "kustomize.toolkit.fluxcd.io/namespace": "parent"
+              },
+              {
+                "kustomize.toolkit.fluxcd.io/name": "namespaces",
+                "kustomize.toolkit.fluxcd.io/namespace": "parent"
+              },
+              {
+                "kustomize.toolkit.fluxcd.io/name": "namespaces",
+                "kustomize.toolkit.fluxcd.io/namespace": "parent"
+              },
+              {
+                "kustomize.toolkit.fluxcd.io/name": "namespaces",
+                "kustomize.toolkit.fluxcd.io/namespace": "parent"
+              },
+              {
+                "kustomize.toolkit.fluxcd.io/name": "namespaces",
+                "kustomize.toolkit.fluxcd.io/namespace": "parent"
+              },
+              {
+                "kustomize.toolkit.fluxcd.io/name": "namespaces",
+                "kustomize.toolkit.fluxcd.io/namespace": "parent"
+              }
+            ]
+          },
+          "parent": {
+            "type": "string",
+            "title": "The parent namespace name if this is a sub namespace",
+            "examples": ["parent", "parent-2"]
+          }
+        },
+        "examples": [
+          {
+            "name": "parent",
+            "is_sub_namespace": false,
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "parent-2",
+            "is_sub_namespace": false,
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "child1",
+            "is_sub_namespace": true,
+            "parent": "parent",
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "child2",
+            "is_sub_namespace": true,
+            "parent": "parent",
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "tenant1",
+            "is_sub_namespace": true,
+            "parent": "parent-2",
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "tenant2",
+            "is_sub_namespace": true,
+            "parent": "parent-2",
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          }
+        ]
+      },
+      "examples": [
+        [
+          {
+            "name": "parent",
+            "is_sub_namespace": false,
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "parent-2",
+            "is_sub_namespace": false,
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "child1",
+            "is_sub_namespace": true,
+            "parent": "parent",
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "child2",
+            "is_sub_namespace": true,
+            "parent": "parent",
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "tenant1",
+            "is_sub_namespace": true,
+            "parent": "parent-2",
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          },
+          {
+            "name": "tenant2",
+            "is_sub_namespace": true,
+            "parent": "parent-2",
+            "annotations": {
+              "prometheus.io/port": 8080,
+              "prometheus.io/scrape": true
+            },
+            "labels": {
+              "kustomize.toolkit.fluxcd.io/name": "namespaces",
+              "kustomize.toolkit.fluxcd.io/namespace": "parent"
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "examples": [
+    {
+      "namespaces": [
+        {
+          "name": "parent",
+          "is_sub_namespace": false,
+          "annotations": {
+            "prometheus.io/port": 8080,
+            "prometheus.io/scrape": true
+          },
+          "labels": {
+            "kustomize.toolkit.fluxcd.io/name": "namespaces",
+            "kustomize.toolkit.fluxcd.io/namespace": "parent"
+          }
+        },
+        {
+          "name": "parent-2",
+          "is_sub_namespace": false,
+          "annotations": {
+            "prometheus.io/port": 8080,
+            "prometheus.io/scrape": true
+          },
+          "labels": {
+            "kustomize.toolkit.fluxcd.io/name": "namespaces",
+            "kustomize.toolkit.fluxcd.io/namespace": "parent"
+          }
+        },
+        {
+          "name": "child1",
+          "is_sub_namespace": true,
+          "parent": "parent",
+          "annotations": {
+            "prometheus.io/port": 8080,
+            "prometheus.io/scrape": true
+          },
+          "labels": {
+            "kustomize.toolkit.fluxcd.io/name": "namespaces",
+            "kustomize.toolkit.fluxcd.io/namespace": "parent"
+          }
+        },
+        {
+          "name": "child2",
+          "is_sub_namespace": true,
+          "parent": "parent",
+          "annotations": {
+            "prometheus.io/port": 8080,
+            "prometheus.io/scrape": true
+          },
+          "labels": {
+            "kustomize.toolkit.fluxcd.io/name": "namespaces",
+            "kustomize.toolkit.fluxcd.io/namespace": "parent"
+          }
+        },
+        {
+          "name": "tenant1",
+          "is_sub_namespace": true,
+          "parent": "parent-2",
+          "annotations": {
+            "prometheus.io/port": 8080,
+            "prometheus.io/scrape": true
+          },
+          "labels": {
+            "kustomize.toolkit.fluxcd.io/name": "namespaces",
+            "kustomize.toolkit.fluxcd.io/namespace": "parent"
+          }
+        },
+        {
+          "name": "tenant2",
+          "is_sub_namespace": true,
+          "parent": "parent-2",
+          "annotations": {
+            "prometheus.io/port": 8080,
+            "prometheus.io/scrape": true
+          },
+          "labels": {
+            "kustomize.toolkit.fluxcd.io/name": "namespaces",
+            "kustomize.toolkit.fluxcd.io/namespace": "parent"
+          }
+        }
+      ]
+    }
+  ]
+}
