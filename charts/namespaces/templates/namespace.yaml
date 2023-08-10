@@ -1,0 +1,43 @@
+{{- range $item := .Values.namespaces }}
+apiVersion: v1
+kind: Namespace
+metadata:
+{{- if ne ( len $item.annotations ) 0 }}
+  annotations:
+    {{- if eq ( $item.is_sub_namespace ) true }}
+    hnc.x-k8s.io/subnamespace-of: {{ $item.parent }}
+    {{- end }}
+    {{- toYaml $item.annotations | nindent 4 }}
+  {{- end }}
+  {{- if ne ( len $item.labels ) 0 }}
+  labels:
+    kubernetes.io/metadata.name: hnc-system
+    {{- toYaml $item.labels | nindent 4 }}
+  {{- end }}
+  name: {{ $item.name }}
+spec:
+  finalizers:
+  - kubernetes
+---
+{{- if eq ( $item.is_sub_namespace) true }}
+---
+apiVersion: hnc.x-k8s.io/v1alpha2
+kind: SubnamespaceAnchor
+metadata:
+  finalizers:
+  - hnc.x-k8s.io
+  {{- if ne ( len $item.annotations ) 0 }}
+  annotations:
+    {{- toYaml $item.annotations | nindent 4 }}
+  {{- end }}
+  {{- if ne ( len $item.labels ) 0 }}
+  labels:
+    kubernetes.io/metadata.name: hnc-system
+    {{- toYaml $item.labels | nindent 4 }}
+  {{- end }}
+  name: {{ $item.name }}
+  namespace: {{ $item.parent }}
+---
+{{- end }}
+{{- end }}
+---
