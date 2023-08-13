@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   namespaces-chart:
   - apiVersion: v2
+    appVersion: 1.16.1
+    created: "2023-08-13T17:47:44.913579711Z"
+    description: A Helm chart for creating namespaces
+    digest: 26ae2a8490b0cfd7ca5452ad268d08372bda35fcf0eedd91c489a57e286ef440
+    name: namespaces-chart
+    type: application
+    urls:
+    - https://svil-helm-charts.srivittal.com/namespaces-chart-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-08-12T21:33:22.156212107Z"
     description: A Helm chart for creating namespaces
@@ -32,4 +42,4 @@ entries:
     urls:
     - https://github.com/awsprof/svil-helm-charts/releases/download/nginx-chart-0.1.0/nginx-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2023-08-12T21:33:22.143831575Z"
+generated: "2023-08-13T17:47:44.900052693Z"
