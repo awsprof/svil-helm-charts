@@ -37,6 +37,7 @@ metadata:
   {{- end }}
   name: {{ $item.name }}
   namespace: {{ $item.parent }}
+spec: {}
 ---
 {{- end }}
 {{- end }}
